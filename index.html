@@ -1,1 +1,1464 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Tecnoriência & Robótica CEP - Piscina Sustentável</title>
 
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- MathJax for TeX/LaTeX Mathematical Formulas -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- VLibras Official Integration Script -->
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sol: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f'
+            },
+            agua: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+              950: '#082f49'
+            },
+            eco: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    h1, h2, h3, h4, h5, .font-heading {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Accessibility Modifications */
+    body.font-dyslexic {
+      font-family: 'Comic Sans MS', 'OpenDyslexic', cursive, sans-serif !important;
+      letter-spacing: 0.06em;
+      word-spacing: 0.15em;
+      line-height: 1.8;
+    }
+
+    body.high-contrast-dark {
+      background-color: #000000 !important;
+      color: #FFFF00 !important;
+    }
+    body.high-contrast-dark * {
+      background-color: #000000 !important;
+      color: #FFFF00 !important;
+      border-color: #FFFF00 !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    body.high-contrast-light {
+      background-color: #FFFFFF !important;
+      color: #000000 !important;
+    }
+    body.high-contrast-light * {
+      background-color: #FFFFFF !important;
+      color: #000000 !important;
+      border-color: #000000 !important;
+    }
+
+    /* Custom Focus Outline for Keyboard Navigation */
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 4px solid #f59e0b !important;
+      outline-offset: 3px !important;
+    }
+
+    /* Skip Link for WCAG Keyboard Navigation */
+    .skip-link {
+      position: absolute;
+      top: -70px;
+      left: 10px;
+      background: #0284c7;
+      color: white;
+      padding: 12px 24px;
+      font-weight: 800;
+      border-radius: 0 0 12px 12px;
+      z-index: 99999;
+      transition: top 0.2s ease-in-out;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Glassmorphism Styles */
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .glass-panel-light {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #0284c7;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #f59e0b;
+    }
+
+    /* Pulse glow effect */
+    .glow-sol {
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.35);
+    }
+    .glow-agua {
+      box-shadow: 0 0 25px rgba(2, 132, 199, 0.35);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-950 text-slate-100 antialiased min-h-screen flex flex-col selection:bg-sol-400 selection:text-slate-950">
+
+  <!-- ACCESSIBILITY SKIP LINK (WCAG 2.1 AAA) -->
+  <a href="#main-content" class="skip-link">Pular direto para o conteúdo principal (Teclas Alt + 2)</a>
+
+  <!-- TOP BAR DE ACESSIBILIDADE WCAG & FERRAMENTAS DE INCLUSÃO -->
+  <aside aria-label="Suíte de Acessibilidade Plena" class="bg-slate-900 text-white text-xs py-2 px-4 sticky top-0 z-50 border-b border-slate-800 shadow-xl">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+      
+      <div class="flex items-center space-x-3 font-semibold">
+        <span class="bg-sol-500 text-slate-950 px-2.5 py-1 rounded-md font-black flex items-center gap-1.5 text-[11px] uppercase tracking-wider">
+          <i class="fa-solid fa-universal-access text-sm"></i> WCAG 2.1 AAA Compliant
+        </span>
+        <span class="hidden lg:inline text-slate-300">Painel de Acessibilidade Digital & Leitura de Tela</span>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        
+        <!-- SINTETIZADOR DE VOZ / NARRADOR NATIVO -->
+        <div class="flex items-center bg-slate-800 rounded-lg border border-slate-700 px-2 py-1">
+          <button id="btn-read-aloud" onclick="toggleReadAloud()" aria-label="Iniciar ou parar leitura em voz alta" class="text-sol-300 hover:text-sol-200 font-bold flex items-center gap-1.5 px-2 py-0.5 rounded transition">
+            <i class="fa-solid fa-volume-high"></i> <span id="read-aloud-text">Ouvir Página</span>
+          </button>
+          <span class="text-slate-600 px-1">|</span>
+          <select id="speech-rate" onchange="updateSpeechRate()" aria-label="Velocidade da leitura de voz" class="bg-slate-900 text-slate-300 text-[10px] rounded px-1 py-0.5 border border-slate-700 font-mono">
+            <option value="0.8">0.8x</option>
+            <option value="1" selected>1.0x</option>
+            <option value="1.2">1.2x</option>
+            <option value="1.5">1.5x</option>
+          </select>
+        </div>
+
+        <!-- CONTRASTES -->
+        <div class="flex items-center bg-slate-800 rounded-lg border border-slate-700 p-0.5">
+          <button onclick="setContrast('normal')" title="Modo Escuro Padrão" aria-label="Modo escuro padrão" class="px-2 py-1 hover:bg-slate-700 rounded text-amber-400 font-bold">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button onclick="setContrast('high-dark')" title="Alto Contraste Amarelo/Preto" aria-label="Alto contraste fundo preto letras amarelas" class="px-2 py-1 hover:bg-slate-700 rounded text-yellow-300 font-black text-xs">
+            HC-Escuro
+          </button>
+          <button onclick="setContrast('high-light')" title="Alto Contraste Claro" aria-label="Alto contraste fundo branco letras pretas" class="px-2 py-1 hover:bg-slate-700 rounded text-slate-100 font-black text-xs">
+            HC-Claro
+          </button>
+        </div>
+
+        <!-- FONTE PARA DISLEXIA -->
+        <button id="btn-dyslexic" onclick="toggleDyslexicFont()" aria-label="Alternar fonte para dislexia" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded-lg border border-slate-700 flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-font text-agua-300"></i> Fonte Dislexia
+        </button>
+
+        <!-- ESCALONADOR DE FONTE -->
+        <div class="flex items-center bg-slate-800 rounded-lg border border-slate-700 px-1">
+          <span class="px-1 text-slate-400 text-[10px] uppercase font-bold">Texto:</span>
+          <button onclick="changeFontSize(-1)" aria-label="Diminuir tamanho da fonte" class="px-2 py-0.5 hover:bg-slate-700 font-bold text-xs">-A</button>
+          <button onclick="resetFontSize()" aria-label="Redefinir tamanho de fonte em 100%" class="px-1.5 py-0.5 hover:bg-slate-700 text-[10px] text-slate-300">100%</button>
+          <button onclick="changeFontSize(1)" aria-label="Aumentar tamanho da fonte" class="px-2 py-0.5 hover:bg-slate-700 font-bold text-xs">+A</button>
+        </div>
+
+        <!-- ATALHOS DE TECLADO MODAL -->
+        <button onclick="toggleShortcutsModal()" aria-label="Ver atalhos do teclado" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-700">
+          <i class="fa-solid fa-keyboard"></i>
+        </button>
+
+        <!-- LIBRAS SUPORTE MODAL -->
+        <button onclick="toggleLibrasModal()" aria-label="Abrir modal de suporte e vídeos em Libras" class="bg-sol-400 hover:bg-sol-500 text-slate-950 font-black px-3 py-1 rounded-lg flex items-center gap-1.5 shadow-md transition">
+          <i class="fa-solid fa-hands-asl-interpreting"></i> Libras
+        </button>
+
+      </div>
+    </div>
+  </aside>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="bg-slate-900/95 backdrop-blur-md sticky top-[41px] z-40 border-b border-slate-800 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      
+      <!-- BRAND LOGO -->
+      <a href="#home" class="flex items-center space-x-3 group rounded-xl">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-agua-600 via-agua-500 to-sol-400 p-0.5 shadow-lg flex items-center justify-center transform group-hover:scale-105 transition duration-300">
+          <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-sol-300 text-xl font-black">
+            <i class="fa-solid fa-sun-plant-wilt"></i>
+          </div>
+        </div>
+        <div>
+          <span class="text-2xl font-black tracking-tight text-white block leading-none font-heading">
+            PORTAL <span class="text-sol-400">CEP</span>
+          </span>
+          <span class="text-[10px] font-bold text-agua-400 uppercase tracking-widest block mt-1">
+            Projeto Integrador 3º TRIMESTRE
+          </span>
+        </div>
+      </a>
+
+      <!-- MAIN DESKTOP NAV LINKS -->
+      <nav aria-label="Navegação Principal" class="hidden lg:flex items-center space-x-1 font-semibold text-slate-300 text-xs">
+        <a href="#home" class="px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">Início</a>
+        <a href="#tecnociencia" class="px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">Tecnociência</a>
+        <a href="#robotica" class="px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">Robótica & ESP32</a>
+        <a href="#simuladores" class="px-3.5 py-2 rounded-lg bg-sol-500/20 text-sol-300 border border-sol-500/40 hover:bg-sol-500/30 transition flex items-center gap-1.5 font-bold">
+          <i class="fa-solid fa-flask text-sol-400"></i> 4 Simuladores
+        </a>
+        <a href="#atividades" class="px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">Quiz & Desafios</a>
+        <a href="#impacto" class="px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">Eco-Calculadora</a>
+        <a href="#sitemap" class="px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">Mapa do Site</a>
+      </nav>
+
+      <!-- MOBILE MENU BUTTON -->
+      <button onclick="toggleMobileMenu()" aria-expanded="false" id="mobile-menu-btn" aria-label="Abrir Menu do Celular" class="lg:hidden p-2.5 rounded-xl bg-slate-800 text-slate-200 hover:bg-slate-700">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+
+    </div>
+
+    <!-- MOBILE DROPDOWN NAV -->
+    <nav id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-2 shadow-2xl">
+      <a href="#home" onclick="toggleMobileMenu()" class="block p-3 rounded-xl font-bold text-slate-200 hover:bg-slate-800">Início & Visão Geral</a>
+      <a href="#tecnociencia" onclick="toggleMobileMenu()" class="block p-3 rounded-xl font-bold text-slate-200 hover:bg-slate-800">Tecnociência (Física Completa)</a>
+      <a href="#robotica" onclick="toggleMobileMenu()" class="block p-3 rounded-xl font-bold text-slate-200 hover:bg-slate-800">Robótica & Sensores ESP32</a>
+      <a href="#simuladores" onclick="toggleMobileMenu()" class="block p-3 rounded-xl font-bold bg-sol-500/20 text-sol-300 border border-sol-500/40">4 Simuladores Quânticos & Térmicos</a>
+      <a href="#atividades" onclick="toggleMobileMenu()" class="block p-3 rounded-xl font-bold text-slate-200 hover:bg-slate-800">Quiz & Fixação</a>
+      <a href="#impacto" onclick="toggleMobileMenu()" class="block p-3 rounded-xl font-bold text-slate-200 hover:bg-slate-800">Calculadora de ROI & CO₂</a>
+      <a href="#sitemap" onclick="toggleMobileMenu()" class="block p-3 rounded-xl font-bold text-slate-200 hover:bg-slate-800">Mapa do Site Semântico</a>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main id="main-content" class="flex-grow">
+
+    <!-- HERO SECTION: PARTICLES CANVAS & EXECUTIVE SUMMARY -->
+    <section id="home" class="relative bg-gradient-to-b from-slate-900 via-agua-950 to-slate-950 text-white py-24 px-4 overflow-hidden border-b border-slate-800">
+      
+      <!-- BACKGROUND CANVAS ANIMATION -->
+      <canvas id="heroCanvas" class="absolute inset-0 w-full h-full opacity-30 pointer-events-none"></canvas>
+
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center relative z-10">
+        
+        <div class="lg:col-span-7 space-y-8">
+          <div class="inline-flex items-center gap-2 bg-sol-500/10 border border-sol-500/30 text-sol-300 text-xs font-black px-4 py-2 rounded-full uppercase tracking-wider shadow-inner">
+            <i class="fa-solid fa-atom text-sol-400"></i> Projeto Integrador CEP • 3º Trimestre
+          </div>
+          
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight text-white font-heading tracking-tight">
+            Gestão Térmica Inteligente & <span class="text-transparent bg-clip-text bg-gradient-to-r from-sol-300 via-sol-400 to-amber-500">Piscina Sustentável</span>
+          </h1>
+
+          <p class="text-slate-300 text-base md:text-lg leading-relaxed font-normal">
+            Uma abordagem interdisciplinar rigorosa unindo <strong>Programação Web Acessível</strong>, <strong>Tecnociência (Ondas Eletromagnéticas, Radiação de Corpo Negro e Efeito Fotoelétrico)</strong> e <strong>Robótica IoT de Precisão</strong> para maximizar a conservação de energia e zerar a pegada de carbono no aquecimento aquático.
+          </p>
+
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="#simuladores" class="bg-gradient-to-r from-sol-400 to-amber-500 hover:from-sol-500 hover:to-amber-600 text-slate-950 font-black px-8 py-4 rounded-2xl shadow-xl hover:shadow-sol-400/20 transition transform hover:-translate-y-1 flex items-center gap-3 text-sm">
+              <i class="fa-solid fa-play text-lg"></i> Iniciar Laboratório Virtual (4 Simuladores)
+            </a>
+            <a href="#tecnociencia" class="bg-slate-800/80 hover:bg-slate-800 text-white font-bold px-8 py-4 rounded-2xl border border-slate-700 backdrop-blur transition flex items-center gap-3 text-sm">
+              <i class="fa-solid fa-book-open"></i> Explorar Fundamentação Científica
+            </a>
+          </div>
+
+          <!-- HIGHLIGHTED METRICS -->
+          <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800/80 text-xs font-semibold text-slate-300">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-sol-500/20 text-sol-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div>
+                <span class="block text-white font-black text-sm">-90%</span>
+                <span class="text-[11px] text-slate-400">Evaporação Noturna</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-agua-500/20 text-agua-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-solar-panel"></i>
+              </div>
+              <div>
+                <span class="block text-white font-black text-sm">100%</span>
+                <span class="text-[11px] text-slate-400">Matriz Renovável</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-eco-500/20 text-eco-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-microchip"></i>
+              </div>
+              <div>
+                <span class="block text-white font-black text-sm">ESP32 IoT</span>
+                <span class="text-[11px] text-slate-400">Automação RTOS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO SCHEMATIC ARCHITECTURE DIAGRAM (SVG) -->
+        <div class="lg:col-span-5 bg-slate-900/90 p-6 rounded-3xl border border-slate-800 shadow-2xl backdrop-blur-md relative">
+          <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-3">
+            <span class="text-xs font-black text-sol-300 uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-diagram-project"></i> Diagrama de Integração Sistêmica
+            </span>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono">Modo Diurno & Noturno</span>
+          </div>
+
+          <div class="w-full h-auto bg-slate-950 rounded-2xl p-4 border border-slate-800">
+            <svg viewBox="0 0 500 340" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+              <!-- SOL -->
+              <g transform="translate(430, 45)">
+                <circle cx="0" cy="0" r="26" fill="#f59e0b" class="animate-pulse"/>
+                <circle cx="0" cy="0" r="32" fill="none" stroke="#fcd34d" stroke-width="2" stroke-dasharray="4,4"/>
+                <path d="M-35 0 H-42 M35 0 H42 M0 -35 V-42 M0 35 V42" stroke="#fbbf24" stroke-width="3"/>
+              </g>
+
+              <!-- PAINEL FOTOVOLTAICO & COLETOR TÉRMICO -->
+              <rect x="230" y="25" width="130" height="45" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+              <line x1="230" y1="47.5" x2="360" y2="47.5" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2,2"/>
+              <text x="295" y="42" fill="#fde047" font-size="10" font-weight="bold" text-anchor="middle">Painel Fotovoltaico /</text>
+              <text x="295" y="58" fill="#fde047" font-size="10" font-weight="bold" text-anchor="middle">Coletor Solar (Corpo Negro)</text>
+
+              <!-- ONDAS INCIDENTES -->
+              <path d="M 400 50 Q 360 40 360 25" stroke="#fbbf24" stroke-width="2" stroke-dasharray="3,3" fill="none"/>
+              <path d="M 390 70 Q 320 50 280 25" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,3" fill="none"/>
+
+              <!-- RESERVATÓRIO PISCINA -->
+              <rect x="30" y="180" width="310" height="120" rx="16" fill="#0284c7" fill-opacity="0.2" stroke="#0ea5e9" stroke-width="2"/>
+              <path d="M 30 200 Q 110 190 185 200 T 340 200 V 285 Q 340 295 330 295 H 40 Q 30 295 30 285 Z" fill="#0284c7" fill-opacity="0.8"/>
+              <text x="185" y="245" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle">RESERVATÓRIO DA PISCINA (45 m³)</text>
+
+              <!-- CAPA TÉRMICA MOTORIZADA SOBRE A ÁGUA -->
+              <rect x="30" y="174" width="310" height="14" rx="4" fill="#22c55e" stroke="#15803d" stroke-width="2"/>
+              <text x="185" y="185" fill="#000000" font-size="9" font-weight="black" text-anchor="middle">CAPA TÉRMICA DE ISOLAMENTO (ISOLANTE DE FAR-IR)</text>
+
+              <!-- BOMBA DE CALOR INVERTER & CIRCULAÇÃO -->
+              <rect x="380" y="190" width="90" height="70" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+              <text x="425" y="220" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">Bomba de Calor</text>
+              <text x="425" y="235" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">Inverter (220V)</text>
+
+              <!-- TUBULAÇÃO DE RECIRCULAÇÃO -->
+              <path d="M 340 260 H 380" stroke="#ef4444" stroke-width="4" fill="none"/>
+              <path d="M 380 210 H 340" stroke="#38bdf8" stroke-width="4" fill="none"/>
+
+              <!-- SENSORES -->
+              <circle cx="60" cy="195" r="7" fill="#ef4444"/>
+              <text x="75" y="160" fill="#cbd5e1" font-size="9" font-weight="bold">DS18B20 (Temperatura)</text>
+              <line x1="60" y1="195" x2="70" y2="165" stroke="#94a3b8" stroke-width="1"/>
+            </svg>
+          </div>
+
+          <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+            <strong>Integração Física-Robótica:</strong> A água absorve radiação no coletor solar térmico. À noite, a perda de energia via irradiação no infravermelho distante ($\lambda \approx 9.7\mu m$) aciona o sensor de luminosidade (LDR) e o microcontrolador ESP32 fecha automaticamente a capa térmica.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: TECNOCIÊNCIA & FÍSICA TEÓRICA EXAUSTIVA -->
+    <section id="tecnociencia" class="py-24 px-4 max-w-7xl mx-auto space-y-16">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <span class="bg-sol-500/10 text-sol-400 border border-sol-500/30 text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider">
+          Módulo Tecnociência & Física Aplicada
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-black text-white font-heading tracking-tight">
+          Fundamentação Teórica & Formulação Matemática
+        </h2>
+        <p class="text-slate-400 text-base">
+          Exploração matemática e física exaustiva dos três fenômenos fundamentais que regem o balanço energético da piscina sustentável.
+        </p>
+      </div>
+
+      <!-- DETAILED MODULE CARDS GRID -->
+      <div class="grid lg:grid-cols-3 gap-8">
+        
+        <!-- MODULE A: ONDAS ELETROMAGNÉTICAS -->
+        <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800 hover:border-agua-500/50 transition duration-300 flex flex-col justify-between shadow-xl">
+          <div class="space-y-5">
+            <div class="w-14 h-14 rounded-2xl bg-agua-500/20 text-agua-400 flex items-center justify-center text-3xl font-black">
+              <i class="fa-solid fa-wave-square"></i>
+            </div>
+            
+            <h3 class="text-2xl font-black text-white font-heading">1. Ondas Eletromagnéticas & Espectro Solar</h3>
+            
+            <p class="text-slate-300 text-sm leading-relaxed">
+              A energia transmitida pelo Sol atravessa o vácuo como uma oscilação acoplada de campos elétricos ($\vec{E}$) e magnéticos ($\vec{B}$), governada pelas <strong>Equações de Maxwell</strong>. A velocidade de propagação no vácuo é dada por:
+            </p>
+
+            <div class="bg-slate-950 text-sol-300 p-4 rounded-xl text-center font-mono text-sm font-bold border border-slate-800">
+              $$c = \frac{1}{\sqrt{\mu_0 \varepsilon_0}} \approx 3 \times 10^8 \text{ m/s}$$
+            </div>
+
+            <p class="text-slate-300 text-sm leading-relaxed">
+              A energia quântica transportada por cada fóton atende à relação de Planck-Einstein:
+            </p>
+
+            <div class="bg-slate-950 text-sol-300 p-4 rounded-xl text-center font-mono text-sm font-bold border border-slate-800">
+              $$E = h \cdot f = \frac{h \cdot c}{\lambda}$$
+            </div>
+
+            <ul class="space-y-2 text-xs text-slate-400 pt-2 border-t border-slate-800">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-sol-400 mt-0.5"></i>
+                <span><strong>Ultravioleta (UV, 100-400 nm):</strong> Detecção via sensor UV para índice de insolação.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-sol-400 mt-0.5"></i>
+                <span><strong>Luz Visível (400-700 nm):</strong> Principal faixa absorvida pelo revestimento negro.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-sol-400 mt-0.5"></i>
+                <span><strong>Infravermelho (IR, >700 nm):</strong> Responsável direto pelo aquecimento radiativo e perdas térmicas.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- MODULE B: RADIAÇÃO DO CORPO NEGRO & WIEN -->
+        <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800 hover:border-sol-500/50 transition duration-300 flex flex-col justify-between shadow-xl">
+          <div class="space-y-5">
+            <div class="w-14 h-14 rounded-2xl bg-sol-500/20 text-sol-400 flex items-center justify-center text-3xl font-black">
+              <i class="fa-solid fa-fire-flame-curved"></i>
+            </div>
+            
+            <h3 class="text-2xl font-black text-white font-heading">2. Radiação do Corpo Negro & Lei de Wien</h3>
+            
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Um corpo negro ideal absorve 100% da radiação incidente ($\alpha = 1$). A potência total irradiada por unidade de área é dada pela <strong>Lei de Stefan-Boltzmann</strong>:
+            </p>
+
+            <div class="bg-slate-950 text-sol-300 p-4 rounded-xl text-center font-mono text-sm font-bold border border-slate-800">
+              $$P = \varepsilon \cdot \sigma \cdot A \cdot T^4$$
+            </div>
+            <p class="text-[11px] text-slate-400 text-center">$(\sigma \approx 5{,}670 \times 10^{-8} \text{ W/m}^2\text{K}^4)$</p>
+
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Pela <strong>Lei do Deslocamento de Wien</strong>, o comprimento de onda de pico ($\lambda_{máx}$) varia inversamente com a temperatura absoluta:
+            </p>
+
+            <div class="bg-slate-950 text-sol-300 p-4 rounded-xl text-center font-mono text-sm font-bold border border-slate-800">
+              $$\lambda_{máx} = \frac{b}{T} \quad (b \approx 2{,}897 \times 10^{-3} \text{ m}\cdot\text{K})$$
+            </div>
+
+            <div class="bg-sol-500/10 p-3 rounded-xl border border-sol-500/20 text-xs text-sol-200 leading-relaxed">
+              <strong>Justificativa Física da Capa Térmica:</strong> O Sol ($T \approx 5800\text{ K}$) emite em $\lambda_{máx} \approx 500\text{ nm}$ (visível). A água da piscina ($T \approx 298\text{ K}$) emite em $\lambda_{máx} \approx 9{,}7\,\mu\text{m}$ (Infravermelho Distante). A capa impede a dissipação dessa radiação e bloqueia a evaporação.
+            </div>
+          </div>
+        </div>
+
+        <!-- MODULE C: EFEITO FOTOELÉTRICO -->
+        <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800 hover:border-eco-500/50 transition duration-300 flex flex-col justify-between shadow-xl">
+          <div class="space-y-5">
+            <div class="w-14 h-14 rounded-2xl bg-eco-500/20 text-eco-400 flex items-center justify-center text-3xl font-black">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            
+            <h3 class="text-2xl font-black text-white font-heading">3. Efeito Fotoelétrico & Células Fotovoltaicas</h3>
+            
+            <p class="text-slate-300 text-sm leading-relaxed">
+              A energia luminosa incide sobre o semicondutor de Silício ($Si$), transferindo energia aos elétrons da banda de valência. A energia cinética máxima do fotoelétron ejetado atende à equação de Einstein:
+            </p>
+
+            <div class="bg-slate-950 text-sol-300 p-4 rounded-xl text-center font-mono text-sm font-bold border border-slate-800">
+              $$E_{k\_máx} = h \cdot f - \Phi$$
+            </div>
+
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Onde $\Phi$ representa a <strong>Função Trabalho</strong> do material. Se $h \cdot f < \Phi$, nenhum elétron é liberado.
+            </p>
+
+            <ul class="space-y-2 text-xs text-slate-400 pt-2 border-t border-slate-800">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-eco-400 mt-0.5"></i>
+                <span><strong>Junção P-N:</strong> O campo elétrico interno direciona os elétrons livres gerando corrente contínua ($CC$).</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-eco-400 mt-0.5"></i>
+                <span><strong>Inversor / Driver:</strong> Alimenta as bombas elétricas de circulação sem gastar energia da rede concessionária.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- VECTOR DIAGRAM OF EM WAVE & BLACKBODY SPECTRUM -->
+      <div class="bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-2xl space-y-6">
+        <div class="flex flex-wrap justify-between items-center gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <h3 class="text-2xl font-black text-white font-heading">Análise Gráfica: Curvas de Emissão de Planck & Balanço de Radiação</h3>
+            <p class="text-xs text-slate-400">Comparativo entre a radiação solar incidente e a irradiação infravermelha emitida pela piscina à noite.</p>
+          </div>
+          <span class="bg-slate-800 text-sol-300 text-xs font-mono px-3 py-1 rounded-full border border-slate-700">Visualização de Espectro Quantum</span>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 items-center">
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
+            <svg viewBox="0 0 500 280" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+              <!-- EIXOS -->
+              <line x1="50" y1="240" x2="470" y2="240" stroke="#64748b" stroke-width="2"/>
+              <line x1="50" y1="240" x2="50" y2="20" stroke="#64748b" stroke-width="2"/>
+              <text x="260" y="270" fill="#94a3b8" font-size="11" text-anchor="middle">Comprimento de Onda λ (nm)</text>
+              <text x="20" y="130" fill="#94a3b8" font-size="11" text-anchor="middle" transform="rotate(-90 20 130)">Radiância Espectral R(λ)</text>
+
+              <!-- CURVA SOL 5800K -->
+              <path d="M 60 235 C 70 80, 90 30, 110 90 C 150 180, 220 220, 450 238" stroke="#f59e0b" stroke-width="3" fill="none"/>
+              <text x="110" y="25" fill="#fde047" font-size="11" font-weight="bold">Sol (5800 K) - Pico em 500nm (Visível)</text>
+
+              <!-- CURVA PISCINA 298K (INFRAVERMELHO LONGO) -->
+              <path d="M 220 239 C 280 238, 350 200, 400 220 C 420 230, 440 236, 460 239" stroke="#38bdf8" stroke-width="3" fill="none"/>
+              <text x="360" y="185" fill="#38bdf8" font-size="11" font-weight="bold">Piscina (298 K) - Pico em 9700nm (Far-IR)</text>
+
+              <!-- FAIXA VISÍVEL HIGHLIGHT -->
+              <rect x="90" y="240" width="40" height="8" fill="#22c55e"/>
+              <text x="110" y="260" fill="#4ade80" font-size="9" text-anchor="middle">Visível</text>
+            </svg>
+          </div>
+
+          <div class="space-y-4 text-xs text-slate-300 leading-relaxed">
+            <h4 class="text-base font-bold text-sol-300">Conclusões Tecnocientíficas do Balanço:</h4>
+            <p>
+              1. <strong>Deslocamento Espectral:</strong> Devido à enorme diferença de temperatura entre o Sol ($5800\text{ K}$) e a água da piscina ($298\text{ K}$), a energia incidente chega predominantemente na faixa da luz visível e UV, enquanto a energia perdida pela piscina ocorre exclusivamente no infravermelho distante.
+            </p>
+            <p>
+              2. <strong>Opacidade da Capa Térmica:</strong> O material polimérico de bolhas da capa térmica possui alta transmissividade para a luz visível (deixando a energia entrar durante o dia), mas é extremamente opaco para o infravermelho distante (restringindo a saída de fótons térmicos à noite).
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECTION 3: ROBÓTICA, SENSORES E AUTOMAÇÃO IOT EMBARCADA -->
+    <section id="robotica" class="bg-slate-900/90 py-24 px-4 border-y border-slate-800">
+      <div class="max-w-7xl mx-auto space-y-16">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-4">
+          <span class="bg-sol-500/10 text-sol-400 border border-sol-500/30 text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider">
+            Módulo Robótica & Engenharia IoT
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-black text-white font-heading tracking-tight">
+            Microcontroladores, Sensores & Firmware Embedded
+          </h2>
+          <p class="text-slate-400 text-base">
+            Arquitetura completa dos sensores, atuadores e código-fonte em C++/FreeRTOS executado no ESP32.
+          </p>
+        </div>
+
+        <!-- SENSOR HARDWARE BREAKDOWN CARDS -->
+        <div class="grid md:grid-cols-4 gap-6">
+          
+          <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-agua-500/20 text-agua-400 flex items-center justify-center text-xl font-bold">
+              <i class="fa-solid fa-temperature-three-quarters"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">DS18B20 Waterproof</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Sensor térmico digital em encapsulamento de aço inox. Utiliza protocolo <strong>1-Wire</strong> de 12 bits de resolução.
+            </p>
+            <span class="inline-block font-mono text-[10px] text-sol-300 bg-slate-900 px-2 py-1 rounded border border-slate-800">Precisão: ±0.5°C</span>
+          </div>
+
+          <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-sol-500/20 text-sol-400 flex items-center justify-center text-xl font-bold">
+              <i class="fa-solid fa-sun"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">Sensor LDR & UV</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Fotorresistor de Sulfeto de Cádmio e fotodiodo UV para quantificar a radiação solar direta na superfície do coletor.
+            </p>
+            <span class="inline-block font-mono text-[10px] text-sol-300 bg-slate-900 px-2 py-1 rounded border border-slate-800">ADC 12 bits ESP32</span>
+          </div>
+
+          <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-eco-500/20 text-eco-400 flex items-center justify-center text-xl font-bold">
+              <i class="fa-solid fa-toggle-on"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">Módulo Relé Optoacoplado</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Chaveamento mecânico isolado galvanicamente para acionamento das bombas e motor de tração da capa térmica.
+            </p>
+            <span class="inline-block font-mono text-[10px] text-sol-300 bg-slate-900 px-2 py-1 rounded border border-slate-800">AC 220V / 10A</span>
+          </div>
+
+          <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl font-bold">
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">ESP32 Dual-Core</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Microcontrolador Wi-Fi/Bluetooth rodando sistema operacional de tempo real (FreeRTOS) e cliente MQTT.
+            </p>
+            <span class="inline-block font-mono text-[10px] text-sol-300 bg-slate-900 px-2 py-1 rounded border border-slate-800">240 MHz Dual Core</span>
+          </div>
+
+        </div>
+
+        <!-- FULL ARDUINO / C++ ESP32 CODE DISPLAY -->
+        <div class="bg-slate-950 rounded-3xl border border-slate-800 p-6 space-y-4">
+          <div class="flex flex-wrap justify-between items-center gap-2 border-b border-slate-800 pb-3">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-code text-sol-400"></i>
+              <span class="font-mono text-xs font-bold text-slate-200">firmware_piscina_freertos.ino</span>
+            </div>
+            <span class="text-[10px] bg-slate-800 text-emerald-400 font-mono px-2.5 py-1 rounded border border-slate-700">C++ / FreeRTOS / ESP32</span>
+          </div>
+
+          <pre class="bg-slate-900 text-emerald-400 p-5 rounded-2xl font-mono text-xs overflow-x-auto border border-slate-800 leading-relaxed">
+<code>// PROJETO INTEGRADOR CEP - AUTOMAÇÃO DE PISCINA SUSTENTÁVEL
+// FIRMWARE EMBARCADO ESP32 (FreeRTOS + 1-Wire + Telemetria)
+
+#include &lt;WiFi.h&gt;
+#include &lt;OneWire.h&gt;
+#include &lt;DallasTemperature.h&gt;
+
+#define PIN_DS18B20 4       // Pino digital do sensor de temperatura da água
+#define PIN_LDR 34          // Pino analógico ADC do sensor de luminosidade LDR
+#define RELE_BOMBA 12       // Relé da bomba de recirculação do coletor solar
+#define RELE_CAPA_FECHAR 13 // Relé do motor de desdobramento da capa térmica
+#define RELE_CAPA_ABRIR 14  // Relé do motor de recolhimento da capa térmica
+
+OneWire oneWire(PIN_DS18B20);
+DallasTemperature sensors(&oneWire);
+
+// Tarefa FreeRTOS 1: Leitura de Sensores
+void TaskSensorRead(void *pvParameters) {
+  for(;;) {
+    sensors.requestTemperatures();
+    float tempAgua = sensors.getTempCByIndex(0);
+    int ldrVal = analogRead(PIN_LDR);
+
+    // Lógica Lógica de Decisão em Tempo Real
+    if (ldrVal &lt; 500) { 
+      // MODO NOTURNO: Fechar capa para bloquear irradiação IV distante
+      digitalWrite(RELE_CAPA_ABRIR, LOW);
+      digitalWrite(RELE_CAPA_FECHAR, HIGH);
+      digitalWrite(RELE_BOMBA, LOW); // Interrompe bombeamento para evitar resfriamento
+    } else {
+      // MODO DIURNO: Recolher capa para absorver luz visível
+      digitalWrite(RELE_CAPA_FECHAR, LOW);
+      digitalWrite(RELE_CAPA_ABRIR, HIGH);
+      
+      if (tempAgua &lt; 28.5) {
+        digitalWrite(RELE_BOMBA, HIGH); // Liga recirculação para aquecimento no coletor
+      } else {
+        digitalWrite(RELE_BOMBA, LOW);  // Setpoint de temperatura atingido
+      }
+    }
+    vTaskDelay(2000 / portTICK_PERIOD_MS);
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+  sensors.begin();
+  pinMode(RELE_BOMBA, OUTPUT);
+  pinMode(RELE_CAPA_FECHAR, OUTPUT);
+  pinMode(RELE_CAPA_ABRIR, OUTPUT);
+
+  // Criação da Tarefa no Core 1 do ESP32
+  xTaskCreatePinnedToCore(TaskSensorRead, "SensorTask", 4096, NULL, 1, NULL, 1);
+}
+
+void loop() {
+  // Loop principal livre para rotinas de rede e telemetria Wi-Fi
+  vTaskDelay(1000 / portTICK_PERIOD_MS);
+}</code></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: 4 INTERACTIVE SIMULATORS (HIGH-END CANVAS & JS) -->
+    <section id="simuladores" class="py-24 px-4 max-w-7xl mx-auto space-y-16">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <span class="bg-sol-500/10 text-sol-400 border border-sol-500/30 text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider">
+          Laboratório Computacional Interativo
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-black text-white font-heading tracking-tight">
+          Simuladores Físicos & Painel IoT
+        </h2>
+        <p class="text-slate-400 text-base">
+          Ajuste variáveis físicas em tempo real e observe as respostas térmicas, quânticas e eletrônicas nos gráficos interativos.
+        </p>
+      </div>
+
+      <!-- TABS DE NAVEGAÇÃO DOS SIMULADORES -->
+      <div class="flex flex-wrap justify-center gap-3 border-b border-slate-800 pb-4">
+        <button onclick="switchSim(1)" id="sim-tab-1" class="px-5 py-3 rounded-2xl font-bold text-xs bg-sol-400 text-slate-950 shadow-lg flex items-center gap-2 transition">
+          <i class="fa-solid fa-temperature-arrow-down"></i> 1. Termodinâmica da Piscina
+        </button>
+        <button onclick="switchSim(2)" id="sim-tab-2" class="px-5 py-3 rounded-2xl font-bold text-xs bg-slate-800 text-slate-300 hover:bg-slate-700 flex items-center gap-2 transition">
+          <i class="fa-solid fa-atom"></i> 2. Laboratório Fotoelétrico
+        </button>
+        <button onclick="switchSim(3)" id="sim-tab-3" class="px-5 py-3 rounded-2xl font-bold text-xs bg-slate-800 text-slate-300 hover:bg-slate-700 flex items-center gap-2 transition">
+          <i class="fa-solid fa-sun"></i> 3. Coletor Solar & Corpo Negro
+        </button>
+        <button onclick="switchSim(4)" id="sim-tab-4" class="px-5 py-3 rounded-2xl font-bold text-xs bg-slate-800 text-slate-300 hover:bg-slate-700 flex items-center gap-2 transition">
+          <i class="fa-solid fa-gauge-high"></i> 4. Telemetria IoT ESP32
+        </button>
+      </div>
+
+      <!-- SIMULADOR 1: TERMODINÂMICA DA PISCINA -->
+      <div id="sim-panel-1" class="bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-8">
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-5 space-y-6">
+            <div>
+              <h3 class="text-2xl font-black text-white font-heading">Simulador de Decaimento Térmico Noturno</h3>
+              <p class="text-xs text-slate-400 mt-1">
+                Acompanhe o resfriamento da piscina ao longo de 12 horas de noite com base nas perdas por radiação, convecção e evaporação.
+              </p>
+            </div>
+
+            <!-- CONTROLE CAPA TÉRMICA -->
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-sol-300 uppercase">Estado da Capa Térmica:</label>
+              <div class="grid grid-cols-2 gap-3">
+                <button id="capa-off-btn" onclick="setCapaState(false)" class="p-3 rounded-xl font-bold text-xs border border-red-500/50 bg-red-500/10 text-red-300 flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-xmark"></i> Sem Capa Térmica
+                </button>
+                <button id="capa-on-btn" onclick="setCapaState(true)" class="p-3 rounded-xl font-bold text-xs border border-eco-500 bg-eco-500 text-white flex items-center justify-center gap-2 shadow-lg">
+                  <i class="fa-solid fa-check"></i> Com Capa Térmica
+                </button>
+              </div>
+            </div>
+
+            <!-- SLIDER VENTO -->
+            <div class="space-y-2">
+              <div class="flex justify-between text-xs font-bold">
+                <span class="text-slate-300">Velocidade do Vento:</span>
+                <span id="wind-val" class="text-sol-400 font-mono">15 km/h</span>
+              </div>
+              <input type="range" id="wind-range" min="0" max="50" value="15" oninput="updateSim1()" class="w-full accent-sol-400">
+            </div>
+
+            <!-- SLIDER TEMP EXTERNA -->
+            <div class="space-y-2">
+              <div class="flex justify-between text-xs font-bold">
+                <span class="text-slate-300">Temperatura do Ar Noturno:</span>
+                <span id="temp-ext-val" class="text-agua-400 font-mono">12 °C</span>
+              </div>
+              <input type="range" id="temp-ext-range" min="-5" max="25" value="12" oninput="updateSim1()" class="w-full accent-agua-400">
+            </div>
+
+            <!-- METRICAS DE SAÍDA -->
+            <div class="bg-slate-950 p-4 rounded-2xl space-y-2 text-xs border border-slate-800">
+              <div class="flex justify-between">
+                <span class="text-slate-400">Temp. Inicial (18h):</span>
+                <span class="font-bold text-sol-300 font-mono">28.0 °C</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Temp. Final (06h):</span>
+                <span id="temp-final-val" class="font-bold text-sol-400 font-mono text-sm">26.3 °C</span>
+              </div>
+              <div class="flex justify-between text-emerald-400 font-bold border-t border-slate-800 pt-2">
+                <span>Energia Conservada:</span>
+                <span id="energy-saved-val" class="font-mono">82.4 kWh</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 bg-slate-950 p-6 rounded-2xl border border-slate-800">
+            <div class="flex justify-between items-center mb-4">
+              <span class="text-xs font-bold text-slate-400">Curva Temperatura (°C) vs Tempo Noturno (Horas)</span>
+              <span class="text-xs font-mono text-sol-400"><i class="fa-solid fa-moon"></i> 12 Horas de Análise</span>
+            </div>
+            <canvas id="thermalChart" width="500" height="280" class="w-full h-auto rounded-xl"></canvas>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SIMULADOR 2: LABORATÓRIO FOTOELÉTRICO -->
+      <div id="sim-panel-2" class="hidden bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-8">
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-5 space-y-6">
+            <div>
+              <h3 class="text-2xl font-black text-white font-heading">Laboratório do Efeito Fotoelétrico</h3>
+              <p class="text-xs text-slate-400 mt-1">
+                Varie a frequência e a intensidade da luz para ejetar elétrons do semicondutor e gerar corrente contínua.
+              </p>
+            </div>
+
+            <!-- SELEÇÃO DE MATERIAL -->
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-sol-300 uppercase">Material Placa Alvo:</label>
+              <select id="target-metal" onchange="updateSim2()" class="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white font-mono text-xs font-bold">
+                <option value="2.10">Silício (Semicondutor Célula Solar - Φ = 2.10 eV)</option>
+                <option value="2.28">Sódio (Metal de Baixa Função Trabalho - Φ = 2.28 eV)</option>
+                <option value="4.70">Cobre (Metal de Alta Função Trabalho - Φ = 4.70 eV)</option>
+              </select>
+            </div>
+
+            <!-- SLIDER COMPRIMENTO DE ONDA -->
+            <div class="space-y-2">
+              <div class="flex justify-between text-xs font-bold">
+                <span class="text-slate-300">Comprimento de Onda ($\lambda$):</span>
+                <span id="lambda-val" class="text-sol-400 font-mono">420 nm</span>
+              </div>
+              <input type="range" id="lambda-range" min="150" max="800" value="420" oninput="updateSim2()" class="w-full accent-sol-400">
+            </div>
+
+            <!-- SLIDER INTENSIDADE -->
+            <div class="space-y-2">
+              <div class="flex justify-between text-xs font-bold">
+                <span class="text-slate-300">Intensidade da Luz (Irradiância):</span>
+                <span id="intensity-val" class="text-agua-400 font-mono">80 %</span>
+              </div>
+              <input type="range" id="intensity-range" min="0" max="100" value="80" oninput="updateSim2()" class="w-full accent-agua-400">
+            </div>
+
+            <div class="bg-slate-950 p-4 rounded-2xl space-y-2 text-xs border border-slate-800 font-mono">
+              <div class="flex justify-between">
+                <span class="text-slate-400">Energia Fóton ($E=hf$):</span>
+                <span id="photon-energy-val" class="font-bold text-sol-300">2.95 eV</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Energia Cinética ($E_{k}$):</span>
+                <span id="kinetic-energy-val" class="font-bold text-emerald-400">0.85 eV</span>
+              </div>
+              <div class="flex justify-between border-t border-slate-800 pt-2 font-bold">
+                <span class="text-slate-300">Corrente Fotoelétrica:</span>
+                <span id="photocurrent-val" class="text-sol-400">14.2 mA</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 bg-slate-950 p-6 rounded-2xl border border-slate-800">
+            <span class="text-xs font-bold text-slate-400 block mb-4">Animação Quântica: Colisão Fóton-Elétron e Fotocorrente</span>
+            <canvas id="photoelectricCanvas" width="500" height="280" class="w-full h-auto rounded-xl"></canvas>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SIMULADOR 3: COLETOR CORPO NEGRO -->
+      <div id="sim-panel-3" class="hidden bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-8">
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-5 space-y-6">
+            <div>
+              <h3 class="text-2xl font-black text-white font-heading">Coletor Solar Térmico & Corpo Negro</h3>
+              <p class="text-xs text-slate-400 mt-1">
+                Simule a absorção de luz e transferência de calor para a água em função da absortividade ($\alpha$) do Revestimento.
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-sol-300 uppercase">Absortividade da Superfície ($\alpha$):</label>
+              <select id="absorptivity-select" onchange="updateSim3()" class="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white font-mono text-xs font-bold">
+                <option value="0.96">Preto Foco Seletivo (Corpo Negro Proximo Ideal - α = 0.96)</option>
+                <option value="0.72">Pintura Azul Escuro (α = 0.72)</option>
+                <option value="0.35">Superfície Clara Refletiva (α = 0.35)</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex justify-between text-xs font-bold">
+                <span class="text-slate-300">Vazão da Água (L/min):</span>
+                <span id="flow-val" class="text-agua-400 font-mono">12 L/min</span>
+              </div>
+              <input type="range" id="flow-range" min="2" max="30" value="12" oninput="updateSim3()" class="w-full accent-agua-400">
+            </div>
+
+            <div class="bg-slate-950 p-4 rounded-2xl space-y-2 text-xs border border-slate-800 font-mono">
+              <div class="flex justify-between">
+                <span class="text-slate-400">Potência Térmica Útil:</span>
+                <span id="thermal-power-val" class="font-bold text-sol-300">768 W/m²</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Elevação da Temp. ($\Delta T$):</span>
+                <span id="delta-temp-val" class="font-bold text-emerald-400">+ 7.2 °C</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 bg-slate-950 p-6 rounded-2xl border border-slate-800">
+            <span class="text-xs font-bold text-slate-400 block mb-4">Fluxo de Radiação Solar e Aquecimento da Água nos Tubos</span>
+            <canvas id="collectorCanvas" width="500" height="280" class="w-full h-auto rounded-xl"></canvas>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SIMULADOR 4: TELEMETRIA IOT DASHBOARD -->
+      <div id="sim-panel-4" class="hidden bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-8">
+        <div>
+          <h3 class="text-2xl font-black text-white font-heading">Painel de Telemetria Virtual ESP32 IoT</h3>
+          <p class="text-xs text-slate-400 mt-1">
+            Interface de monitoramento em tempo real do microcontrolador recebendo pacotes de dados via MQTT.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-4">
+          <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
+            <span class="text-[10px] font-bold text-slate-400 uppercase">Temp. Água (DS18B20)</span>
+            <div id="iot-temp" class="text-3xl font-black text-sol-400 font-mono">28.2 °C</div>
+            <span class="text-[10px] text-emerald-400 block"><i class="fa-solid fa-circle text-[8px]"></i> Sensor Conectado</span>
+          </div>
+
+          <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
+            <span class="text-[10px] font-bold text-slate-400 uppercase">Irradiância (LDR)</span>
+            <div id="iot-ldr" class="text-3xl font-black text-agua-400 font-mono">940 Lux</div>
+            <span class="text-[10px] text-sol-300 block"><i class="fa-solid fa-sun text-[8px]"></i> Sol Intenso</span>
+          </div>
+
+          <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
+            <span class="text-[10px] font-bold text-slate-400 uppercase">Status Capa Térmica</span>
+            <div id="iot-capa" class="text-2xl font-black text-emerald-400 font-mono">RECOLHIDA</div>
+            <span class="text-[10px] text-slate-400 block">Modo Diurno</span>
+          </div>
+
+          <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
+            <span class="text-[10px] font-bold text-slate-400 uppercase">Bomba Recirculação</span>
+            <div id="iot-bomba" class="text-2xl font-black text-agua-400 font-mono">ATIVADA</div>
+            <span class="text-[10px] text-emerald-400 block">Fluxo 12 L/min</span>
+          </div>
+        </div>
+
+        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3">
+          <span class="text-xs font-bold text-sol-300 uppercase block">Console Serial em Tempo Real (115200 baud)</span>
+          <div id="iot-console" class="bg-black text-emerald-400 font-mono text-xs p-4 rounded-xl h-32 overflow-y-auto leading-relaxed border border-slate-900">
+            [00:00:01] System booted. FreeRTOS Kernel active.<br>
+            [00:00:02] WiFi connected. IP: 192.168.1.105<br>
+            [00:00:04] Sensor DS18B20 Read: 28.2 C | LDR: 940 Lux<br>
+            [00:00:06] Day mode triggered. Retracting thermal cover motor...
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECTION 5: QUIZ INTERATIVO & CALCULADORA SOCIOAMBIENTAL -->
+    <section id="atividades" class="bg-slate-900/90 py-24 px-4 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto space-y-16">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-4">
+          <span class="bg-sol-500/10 text-sol-400 border border-sol-500/30 text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider">
+            Atividades Pedagógicas & Avaliação
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-black text-white font-heading tracking-tight">
+            Quiz de Fixação & Eco-Calculadora
+          </h2>
+          <p class="text-slate-400 text-base">
+            Valide seu aprendizado com perguntas conceituais e simule a economia e payback do projeto.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8">
+          
+          <!-- QUIZ CONTAINER -->
+          <div class="lg:col-span-7 bg-slate-950 p-8 rounded-3xl border border-slate-800 space-y-6 shadow-xl">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+              <h3 class="text-xl font-black text-white">Quiz de Tecnociência & Robótica</h3>
+              <span id="quiz-score" class="text-xs font-bold bg-sol-500/20 text-sol-300 px-3 py-1 rounded-full border border-sol-500/30">Pontuação: 0 / 2</span>
+            </div>
+
+            <!-- Q1 -->
+            <div class="space-y-3">
+              <p class="text-sm font-bold text-slate-200">1. Qual a razão física que justifica o uso da capa térmica durante a noite?</p>
+              <div class="space-y-2">
+                <button onclick="checkQuiz(1, 'a')" class="w-full text-left p-3.5 rounded-xl border border-slate-800 hover:bg-slate-900 text-xs text-slate-300 transition">
+                  A) A água reage quimicamente com o oxigênio noturno esfriando por convecção endotérmica.
+                </button>
+                <button onclick="checkQuiz(1, 'b')" class="w-full text-left p-3.5 rounded-xl border border-slate-800 hover:bg-slate-900 text-xs text-slate-300 transition">
+                  B) A água comporta-se como corpo negro emitindo no Infravermelho Distante ($\lambda \approx 9.7\mu m$) e evaporando. A capa bloqueia ambos os processos.
+                </button>
+              </div>
+              <div id="q1-feedback" class="hidden p-3 rounded-xl text-xs font-bold"></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="space-y-3 pt-4 border-t border-slate-800">
+              <p class="text-sm font-bold text-slate-200">2. No efeito fotoelétrico, o que ocorre se a frequência da luz for menor que a frequência de corte do Silício?</p>
+              <div class="space-y-2">
+                <button onclick="checkQuiz(2, 'a')" class="w-full text-left p-3.5 rounded-xl border border-slate-800 hover:bg-slate-900 text-xs text-slate-300 transition">
+                  A) Nenhum elétron é liberado, independentemente da intensidade da iluminação.
+                </button>
+                <button onclick="checkQuiz(2, 'b')" class="w-full text-left p-3.5 rounded-xl border border-slate-800 hover:bg-slate-900 text-xs text-slate-300 transition">
+                  B) O elétron é ejetado normalmente, mas ganha velocidade reduzida.
+                </button>
+              </div>
+              <div id="q2-feedback" class="hidden p-3 rounded-xl text-xs font-bold"></div>
+            </div>
+          </div>
+
+          <!-- CALCULADORA DE ROI E IMPACTO -->
+          <div id="impacto" class="lg:col-span-5 bg-slate-950 p-8 rounded-3xl border border-slate-800 space-y-6 shadow-xl">
+            <h3 class="text-xl font-black text-white border-b border-slate-800 pb-4">Calculadora de Impacto & Payback</h3>
+
+            <div class="space-y-4">
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-400">Área de Espelho d'Água (m²):</label>
+                <input type="number" id="calc-area" value="32" oninput="calculateROI()" class="w-full p-3 rounded-xl bg-slate-900 border border-slate-800 text-white font-bold font-mono text-xs">
+              </div>
+
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-400">Tarifa de Energia (R$ / kWh):</label>
+                <input type="number" id="calc-tariff" value="0.92" step="0.05" oninput="calculateROI()" class="w-full p-3 rounded-xl bg-slate-900 border border-slate-800 text-white font-bold font-mono text-xs">
+              </div>
+
+              <div class="bg-slate-900 p-4 rounded-2xl space-y-3 border border-slate-800 text-xs">
+                <div class="flex justify-between">
+                  <span class="text-slate-400">Economia Anual Estimada:</span>
+                  <span id="roi-money" class="font-bold text-emerald-400 font-mono text-base">R$ 4.820</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-400">Redução de CO₂e Anual:</span>
+                  <span id="roi-co2" class="font-bold text-sol-300 font-mono text-base">2.1 Toneladas</span>
+                </div>
+                <div class="flex justify-between border-t border-slate-800 pt-2">
+                  <span class="text-slate-300 font-bold">Payback do Investimento:</span>
+                  <span id="roi-months" class="font-bold text-agua-400 font-mono">14 Meses</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: MAPA DO SITE E RODAPÉ SEMÂNTICO -->
+    <section id="sitemap" class="bg-slate-950 py-16 px-4 border-t border-slate-800 text-xs text-slate-400">
+      <div class="max-w-7xl mx-auto space-y-12">
+        
+        <div class="grid md:grid-cols-4 gap-8">
+          
+          <div class="space-y-3">
+            <span class="text-lg font-black text-white block font-heading">PORTAL CEP</span>
+            <p class="leading-relaxed">
+              Projeto Integrador do 3º Trimestre do CEP. Uma plataforma educacional modelo para integração de física moderna, robótica e acessibilidade.
+            </p>
+          </div>
+
+          <div class="space-y-2">
+            <strong class="text-white block font-bold text-sm">Estrutura de Páginas</strong>
+            <ul class="space-y-1 font-medium">
+              <li><a href="#home" class="hover:text-sol-300">Início & Resumo Executivo</a></li>
+              <li><a href="#tecnociencia" class="hover:text-sol-300">Tecnociência & Equações de Física</a></li>
+              <li><a href="#robotica" class="hover:text-sol-300">Robótica & Firmware C++</a></li>
+              <li><a href="#simuladores" class="hover:text-sol-300">4 Simuladores Interativos</a></li>
+            </ul>
+          </div>
+
+          <div class="space-y-2">
+            <strong class="text-white block font-bold text-sm">Acessibilidade Digital</strong>
+            <ul class="space-y-1 font-medium">
+              <li><span class="text-emerald-400"><i class="fa-solid fa-check"></i> WCAG 2.1 AAA Compliant</span></li>
+              <li><span class="text-emerald-400"><i class="fa-solid fa-check"></i> Suporte Completo VLibras</span></li>
+              <li><span class="text-emerald-400"><i class="fa-solid fa-check"></i> Fonte Especial para Dislexia</span></li>
+              <li><span class="text-emerald-400"><i class="fa-solid fa-check"></i> Leitura por Sintetizador de Voz</span></li>
+            </ul>
+          </div>
+
+          <div class="space-y-2">
+            <strong class="text-white block font-bold text-sm">Créditos Institucionais</strong>
+            <p>Desenvolvido para avaliação no 3º Trimestre CEP.</p>
+            <p class="text-[10px] text-slate-500">Curitiba, Paraná • Outubro de 2026</p>
+          </div>
+
+        </div>
+
+        <div class="border-t border-slate-900 pt-6 text-center text-[11px] text-slate-600">
+          &copy; 2026 Projeto Integrador CEP - Todos os direitos reservados.
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DE VÍDEOS E DICAS EM LIBRAS -->
+  <dialog id="libras-modal" class="bg-slate-900 text-white p-6 rounded-3xl border border-slate-700 shadow-2xl max-w-lg w-full backdrop:bg-slate-950/80">
+    <div class="space-y-4">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+        <h3 class="text-lg font-black text-sol-300 flex items-center gap-2">
+          <i class="fa-solid fa-hands-asl-interpreting"></i> Acessibilidade em Libras
+        </h3>
+        <button onclick="toggleLibrasModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+      </div>
+
+      <p class="text-xs text-slate-300 leading-relaxed">
+        Este portal educacional possui o widget oficial do <strong>VLibras</strong> ativo no canto direito inferior da tela para tradução simultânea.
+      </p>
+
+      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2 text-xs">
+        <p>1. Clique na mãozinha azul do VLibras no canto inferior direito.</p>
+        <p>2. Selecione qualquer texto da página para sinalização automática em Libras.</p>
+      </div>
+
+      <button onclick="toggleLibrasModal()" class="w-full bg-sol-400 text-slate-950 font-black py-3 rounded-xl text-xs">Entendido</button>
+    </div>
+  </dialog>
+
+  <!-- MODAL ATALHOS TECLADO -->
+  <dialog id="shortcuts-modal" class="bg-slate-900 text-white p-6 rounded-3xl border border-slate-700 shadow-2xl max-w-md w-full backdrop:bg-slate-950/80">
+    <div class="space-y-4">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+        <h3 class="text-lg font-black text-sol-300">Atalhos de Teclado (WCAG)</h3>
+        <button onclick="toggleShortcutsModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+      </div>
+
+      <div class="space-y-2 text-xs font-mono text-slate-300">
+        <div class="flex justify-between bg-slate-950 p-2 rounded">
+          <span>Pular para o Conteúdo</span>
+          <span class="text-sol-400 font-bold">Alt + 2</span>
+        </div>
+        <div class="flex justify-between bg-slate-950 p-2 rounded">
+          <span>Navegar Elementos Interativos</span>
+          <span class="text-sol-400 font-bold">Tecla Tab</span>
+        </div>
+      </div>
+
+      <button onclick="toggleShortcutsModal()" class="w-full bg-agua-600 text-white font-bold py-2.5 rounded-xl text-xs">Fechar</button>
+    </div>
+  </dialog>
+
+  <!-- OFFICIAL VLIBRAS WIDGET CONTAINER -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- COMPLETE JAVASCRIPT LOGIC -->
+  <script>
+    // INICIALIZAÇÃO DE BIBLIOTECAS E SIMULADORES
+    window.onload = function() {
+      if (typeof window.VLibras !== 'undefined') {
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+      }
+      initHeroCanvas();
+      initSimulators();
+      calculateROI();
+    };
+
+    // HERO PARTICLES CANVAS ANIMATION
+    function initHeroCanvas() {
+      const canvas = document.getElementById('heroCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = canvas.offsetWidth;
+      let height = canvas.height = canvas.offsetHeight;
+
+      const particles = [];
+      for(let i = 0; i < 45; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 2 + 1,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          color: Math.random() > 0.5 ? '#f59e0b' : '#0284c7'
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+
+    // ACCESSIBILITY FUNCTIONS
+    let speechRate = 1.0;
+    let isReading = false;
+
+    function setContrast(mode) {
+      document.body.classList.remove('high-contrast-dark', 'high-contrast-light');
+      if (mode === 'high-dark') document.body.classList.add('high-contrast-dark');
+      if (mode === 'high-light') document.body.classList.add('high-contrast-light');
+    }
+
+    function toggleDyslexicFont() {
+      document.body.classList.toggle('font-dyslexic');
+    }
+
+    let fontSizeStep = 0;
+    function changeFontSize(delta) {
+      fontSizeStep = Math.max(-1, Math.min(2, fontSizeStep + delta));
+      document.body.style.fontSize = (100 + fontSizeStep * 10) + '%';
+    }
+    function resetFontSize() {
+      fontSizeStep = 0;
+      document.body.style.fontSize = '100%';
+    }
+
+    function toggleReadAloud() {
+      if ('speechSynthesis' in window) {
+        if (speechSynthesis.speaking) {
+          speechSynthesis.cancel();
+          document.getElementById('read-aloud-text').innerText = 'Ouvir Página';
+          isReading = false;
+          return;
+        }
+        const text = document.getElementById('main-content').innerText;
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'pt-BR';
+        utterance.rate = speechRate;
+        utterance.onend = function() {
+          document.getElementById('read-aloud-text').innerText = 'Ouvir Página';
+          isReading = false;
+        };
+        speechSynthesis.speak(utterance);
+        document.getElementById('read-aloud-text').innerText = 'Parar Leitura';
+        isReading = true;
+      }
+    }
+
+    function updateSpeechRate() {
+      speechRate = parseFloat(document.getElementById('speech-rate').value);
+      if (isReading) {
+        speechSynthesis.cancel();
+        toggleReadAloud();
+      }
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+
+    function toggleLibrasModal() {
+      const modal = document.getElementById('libras-modal');
+      if (modal.open) modal.close(); else modal.showModal();
+    }
+
+    function toggleShortcutsModal() {
+      const modal = document.getElementById('shortcuts-modal');
+      if (modal.open) modal.close(); else modal.showModal();
+    }
+
+    // SIMULATORS SWITCHER
+    let isCapaActive = true;
+
+    function switchSim(num) {
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById(`sim-panel-${i}`).classList.add('hidden');
+        document.getElementById(`sim-tab-${i}`).className = "px-5 py-3 rounded-2xl font-bold text-xs bg-slate-800 text-slate-300 hover:bg-slate-700 flex items-center gap-2 transition";
+      }
+      document.getElementById(`sim-panel-${num}`).classList.remove('hidden');
+      document.getElementById(`sim-tab-${num}`).className = "px-5 py-3 rounded-2xl font-bold text-xs bg-sol-400 text-slate-950 shadow-lg flex items-center gap-2 transition";
+    }
+
+    function setCapaState(state) {
+      isCapaActive = state;
+      updateSim1();
+    }
+
+    function initSimulators() {
+      updateSim1();
+      updateSim2();
+      updateSim3();
+    }
+
+    // SIMULATOR 1 - THERMAL GRAPH CANVAS
+    function updateSim1() {
+      const wind = parseFloat(document.getElementById('wind-range').value);
+      const tempExt = parseFloat(document.getElementById('temp-ext-range').value);
+      document.getElementById('wind-val').innerText = wind + ' km/h';
+      document.getElementById('temp-ext-val').innerText = tempExt + ' °C';
+
+      const canvas = document.getElementById('thermalChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = '#334155'; ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(40, 20); ctx.lineTo(40, 240); ctx.lineTo(480, 240);
+      ctx.stroke();
+
+      let currentTemp = 28.0;
+      const coolingFactor = isCapaActive ? 0.025 : (0.10 + wind * 0.004);
+
+      ctx.beginPath();
+      ctx.strokeStyle = isCapaActive ? '#22c55e' : '#ef4444';
+      ctx.lineWidth = 3;
+
+      for (let hour = 0; hour <= 12; hour += 0.5) {
+        const x = 40 + (hour / 12) * 440;
+        const loss = (currentTemp - tempExt) * coolingFactor * 0.08;
+        currentTemp -= loss;
+        const y = 240 - ((currentTemp - 10) / 20) * 210;
+
+        if (hour === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      document.getElementById('temp-final-val').innerText = currentTemp.toFixed(1) + ' °C';
+      document.getElementById('energy-saved-val').innerText = (isCapaActive ? (82.4 - wind * 0.2) : 0).toFixed(1) + ' kWh';
+    }
+
+    // SIMULATOR 2 - PHOTOELECTRIC CANVAS
+    function updateSim2() {
+      const phi = parseFloat(document.getElementById('target-metal').value);
+      const lambda = parseInt(document.getElementById('lambda-range').value);
+      const intensity = parseInt(document.getElementById('intensity-range').value);
+
+      document.getElementById('lambda-val').innerText = lambda + ' nm';
+      document.getElementById('intensity-val').innerText = intensity + ' %';
+
+      const photonE = (1240 / lambda);
+      const ek = Math.max(0, photonE - phi);
+
+      document.getElementById('photon-energy-val').innerText = photonE.toFixed(2) + ' eV';
+      document.getElementById('kinetic-energy-val').innerText = ek.toFixed(2) + ' eV';
+      document.getElementById('photocurrent-val').innerText = ek > 0 ? (intensity * 0.18).toFixed(1) + ' mA' : '0.0 mA';
+
+      const canvas = document.getElementById('photoelectricCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#1e293b';
+      ctx.fillRect(60, 200, 380, 40);
+
+      ctx.fillStyle = lambda < 400 ? '#a855f7' : (lambda < 550 ? '#38bdf8' : '#f59e0b');
+      for(let i = 0; i < intensity / 15; i++) {
+        ctx.beginPath();
+        ctx.moveTo(80 + i * 50, 20); ctx.lineTo(120 + i * 50, 195);
+        ctx.stroke();
+      }
+
+      if (ek > 0) {
+        ctx.fillStyle = '#facc15';
+        for(let i = 0; i < intensity / 15; i++) {
+          ctx.beginPath();
+          ctx.arc(140 + i * 50, 130, 5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    // SIMULATOR 3 - SOLAR COLLECTOR CANVAS
+    function updateSim3() {
+      const alpha = parseFloat(document.getElementById('absorptivity-select').value);
+      const flow = parseInt(document.getElementById('flow-range').value);
+
+      document.getElementById('flow-val').innerText = flow + ' L/min';
+      const power = Math.round(800 * alpha);
+      const deltaT = (power * 0.11 / (flow * 0.1)).toFixed(1);
+
+      document.getElementById('thermal-power-val').innerText = power + ' W/m²';
+      document.getElementById('delta-temp-val').innerText = '+ ' + deltaT + ' °C';
+
+      const canvas = document.getElementById('collectorCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = alpha > 0.9 ? '#020617' : (alpha > 0.7 ? '#1e3a8a' : '#64748b');
+      ctx.fillRect(60, 80, 380, 120);
+
+      ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 10;
+      ctx.beginPath();
+      ctx.moveTo(70, 140); ctx.lineTo(430, 140);
+      ctx.stroke();
+    }
+
+    // QUIZ LOGIC
+    let quizScore = 0;
+    function checkQuiz(q, option) {
+      const feedback = document.getElementById(`q${q}-feedback`);
+      feedback.classList.remove('hidden');
+
+      if ((q === 1 && option === 'b') || (q === 2 && option === 'a')) {
+        feedback.className = "p-3 rounded-xl text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+        feedback.innerText = "Resposta Correta! " + (q === 1 ? "A capa bloqueia tanto a emissão Far-IR quanto a evaporação." : "A emissão depende da frequência de corte.");
+        quizScore++;
+      } else {
+        feedback.className = "p-3 rounded-xl text-xs font-bold bg-red-500/20 text-red-300 border border-red-500/40";
+        feedback.innerText = "Resposta Incorreta. Tente novamente!";
+      }
